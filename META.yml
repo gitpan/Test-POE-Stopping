@@ -1,0 +1,20 @@
+abstract: ~
+author: Adam Kennedy <adamk@cpan.org>
+build_requires: 
+  Test::Builder: 0.32
+  Test::Builder::Tester: 1.02
+  Test::More: 0.62
+distribution_type: module
+generated_by: Module::Install version 0.64
+license: perl
+name: Test-POE-Stopping
+no_index: 
+  directory: 
+    - inc
+    - t
+requires: 
+  Carp: 0
+  Exporter: 0
+  POE: 0.38
+  POE::API::Peek: 1.0594
+version: 0.01
