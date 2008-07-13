@@ -1,5 +1,5 @@
 NAME
-    Test::POE::Stopped - Test if a POE process has nothing left to do
+    Test::POE::Stopping - Test if a POE process has nothing left to do
 
 DESCRIPTION
     POE is a curious beast, as most asynchronous environments are.
@@ -56,7 +56,7 @@ SEE ALSO
     POE, <http://ali.as/>
 
 COPYRIGHT
-    Copyright 2006 Adam Kennedy.
+    Copyright 2006 - 2008 Adam Kennedy.
 
     This program is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself.

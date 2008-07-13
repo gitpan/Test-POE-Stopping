@@ -1,20 +1,28 @@
-abstract: ~
-author: Adam Kennedy <adamk@cpan.org>
-build_requires: 
-  Test::Builder: 0.32
-  Test::Builder::Tester: 1.02
+---
+abstract: 'Test if a POE process has nothing left to do'
+author:
+  - 'Adam Kennedy <adamk@cpan.org>'
+build_requires:
+  Test::Builder: 0.64
   Test::More: 0.62
 distribution_type: module
-generated_by: Module::Install version 0.64
+generated_by: 'Module::Install version 0.76'
 license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+module_name: Test::POE::Stopping
 name: Test-POE-Stopping
-no_index: 
-  directory: 
+no_index:
+  directory:
     - inc
     - t
-requires: 
+requires:
   Carp: 0
   Exporter: 0
-  POE: 0.38
+  POE: 1.00
   POE::API::Peek: 1.0594
-version: 0.01
+  perl: 5.005
+resources:
+  license: http://dev.perl.org/licenses/
+version: 0.02
