@@ -6,7 +6,7 @@ build_requires:
   Test::Builder: 0.64
   Test::More: 0.62
 distribution_type: module
-generated_by: 'Module::Install version 0.76'
+generated_by: 'Module::Install version 0.79'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -18,11 +18,9 @@ no_index:
     - inc
     - t
 requires:
-  Carp: 0
-  Exporter: 0
-  POE: 1.00
+  POE: 1.003
   POE::API::Peek: 1.0594
-  perl: 5.005
+  perl: 5.6.0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.02
+version: 0.03
