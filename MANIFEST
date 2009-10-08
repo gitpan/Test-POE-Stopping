@@ -15,8 +15,10 @@ META.yml
 README
 t/01_compile.t
 t/02_is_stopping.t
-t/03_not_alarm.t
-t/04_not_queue.t
+t/03_alarm.t
+t/04_yield.t
+t/05_call.t
+t/06_post.t
 t/97_meta.t
 t/98_pod.t
 t/99_pmv.t
