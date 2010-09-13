@@ -50,12 +50,12 @@ use YAML::Tiny     1.38 ();
 use Test::More     0.80 ();
 use Test::Builder  0.80 ();
 use POE           1.003 qw( Session );
-use POE::API::Peek 1.34 ();
+use POE::API::Peek      ();
 
 use vars qw{$VERSION @ISA @EXPORT};
 BEGIN {
 	require Exporter;
-	$VERSION = '1.05';
+	$VERSION = '1.06';
 	@ISA     = 'Exporter';
 	@EXPORT  = 'poe_stopping';
 }
@@ -249,7 +249,7 @@ L<POE>, L<http://ali.as/>
 
 =head1 COPYRIGHT
 
-Copyright 2006 - 2009 Adam Kennedy.
+Copyright 2006 - 2010 Adam Kennedy.
 
 This program is free software; you can redistribute
 it and/or modify it under the same terms as Perl itself.
