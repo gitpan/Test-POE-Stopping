@@ -55,7 +55,7 @@ use POE::API::Peek      ();
 use vars qw{$VERSION @ISA @EXPORT};
 BEGIN {
 	require Exporter;
-	$VERSION = '1.07';
+	$VERSION = '1.08';
 	@ISA     = 'Exporter';
 	@EXPORT  = 'poe_stopping';
 }
@@ -109,6 +109,11 @@ sub poe_stopping {
 	my @sessions = map {
 		session_summary($_)
 	} $api->session_list;
+
+	# Remove the master session
+	@sessions = grep {
+		$_->{id} ne POE::Kernel->ID
+	} @sessions;
 
 	# Check we aren't trying to terminate POE in a nested event
 	my $i      = 0;
@@ -180,14 +185,13 @@ sub poe_stopping {
 }
 
 sub session_summary {
-	my $session = shift;
-	my $api     = POE::API::Peek->new;
-	my $current = $api->current_session;
-
-	my @children = $api->get_session_children($session);
-
-	my %signals = eval {
-		$api->signals_watched_by_session($session);
+	my $session  = shift;
+	my $api      = POE::API::Peek->new;
+	my $param    = ($POE::VERSION >= 1.310) ? $session->ID : $session;
+	my $current  = $api->current_session;
+	my @children = $api->get_session_children($param);
+	my %signals  = eval {
+		$api->signals_watched_by_session($param);
 	};
 	if ( $@ and $@ =~ /^Can\'t use an undefined value as a HASH reference/ ) {
 		%signals = ();
@@ -211,12 +215,12 @@ sub session_summary {
 
 	my $summary = {
 		id       => $session->ID,
-		alias    => $api->session_alias_count($session),
-		refs     => $api->get_session_refcount($session),
-		extra    => $api->get_session_extref_count($session),
-		handles  => $api->session_handle_count($session),
+		alias    => $api->session_alias_count($param),
+		refs     => $api->get_session_refcount($param),
+		extra    => $api->get_session_extref_count($param),
+		handles  => $api->session_handle_count($param),
 		signals  => scalar(keys %signals),
-		current  => ($current->ID == $session->ID) ? 1 : 0,
+		current  => ($current->ID eq $session->ID) ? 1 : 0,
 		children => scalar(@children),
 		queue    => {
 			distinct => scalar(@distinct),
@@ -249,7 +253,7 @@ L<POE>, L<http://ali.as/>
 
 =head1 COPYRIGHT
 
-Copyright 2006 - 2010 Adam Kennedy.
+Copyright 2006 - 2011 Adam Kennedy.
 
 This program is free software; you can redistribute
 it and/or modify it under the same terms as Perl itself.

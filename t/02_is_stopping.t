@@ -8,7 +8,7 @@ BEGIN {
 	$^W = 1;
 }
 
-use Test::More tests => 2;
+use Test::More tests => 3;
 use Test::POE::Stopping;
 use POE qw{Session};
 
@@ -19,8 +19,11 @@ POE::Session->create(
 	},
 );
 
-POE::Kernel->run;
+my $rv = eval {
+	POE::Kernel->run;
+};
 pass( 'POE Stopped' );
+is( $@, '', 'POE Stopped without exception' );
 
 
 
